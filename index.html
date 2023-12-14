@@ -7,9 +7,30 @@
     <link rel="stylesheet" href="public/Assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="public/Assets/css/style.css">
+    <script> scr = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script src="public/Assets/js/jquery-3.4.1.min.js"></script>
+    <script> scr ="public/Assets/js/app.js"></script>
+    <script>
+        $(function(){
+           const urlParams = new URLSearchParams(window.location.search)
+           ;
+           var meeting_id = urlParams.get('meetingID');
+           var user_id = window.prompt("Enter your userId");
+
+           if(!user_id || !meeting_id){
+            alert('User id or meeting id missing');
+            window.location.href = '/action.html';
+            return;
+           }
+           $("#meetingContainer").show();
+
+           MyApp._init(user_id,meeting_id);
+
+        })
+    </script>
 </head>
 <body>
-    <main class="container-fluid d-flex flex-column home-wrap">
+    <main class=" d-flex flex-column home-wrap">
         <div class="g-top text-light">
             <div class="top-remote-video-show-wrap d-flex">
                 <div id="meetingContainer" class="w-75 d-none">
@@ -37,7 +58,7 @@
                     <div class="top-left-participant-icon">
                         <span class="material-icons">people</span>
                     </div>
-                    <div class="top-left-participant-count"></div>
+                    <div class="top-left-participant-count">2</div>
                 </div>
                 <div class="top-left-chat-wrap pt-2 cursor-pointer">
                     <span class="material-icons">message</span>
@@ -51,7 +72,8 @@
                     Meeting Details<span class="material-icons">keyboard_arrow_down</span>
                 </div>
             </div>
-            <div class="bottom-middle">
+            <div class="bottom-middle d-flex justify-content-center align-items-center"
+            style = "height: 10vh;">
                 <div class="mic-toggle-wrap action-icon-style display-center mr-2 cursor-pointer" id="miceMuteUnmute">
                     <span class="material-icons">mic_off</span>
                 </div>
@@ -65,9 +87,10 @@
             <div class="bottom-right d-flex justify-content-center align-items-center mr-3" style="height: 10vh;">
                 <div class="present-now-wrap d-flex justify-content-center flex-column align-items-center mr-5 cursor-pointer">
                     <span class="material-icons">present_to_all</span>
+                    <div>Present Now</div>
 
                 </div>
-                <div>Present Now</div>
+                
                 <div class="option-wrap cursor-pointer display-center" style="height: 10vh; position: relative;">
                     <div class="option-icon">
                         <span class="material-icons">more_vert</span>
