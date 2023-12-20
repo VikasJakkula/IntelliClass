@@ -1,4 +1,2 @@
-This is a sample file.
-Modified this to check push command
-
-done till 10th video.
+Completed till google meet
+Have to add a chatbot
